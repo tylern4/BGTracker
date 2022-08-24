@@ -26,6 +26,7 @@ class Quad : public BGE
     void TransMatrix ();
     void TwissMatrix ();
     void SetSympass ();
+    void run_qsympass4(int NParticles, int NTurns);
 
     void DoDxDyTilt (double*, int const);
     void UnDoDxDyTilt (double*, int const);
