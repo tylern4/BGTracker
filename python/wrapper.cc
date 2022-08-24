@@ -47,12 +47,23 @@ PYBIND11_MODULE(pyGBCuda, m)
                       int const,
                       double const,
                       double const,
-                      double const>())
-        .def("run_qsympass4", &Quad::run_qsympass4)
+                      double const>(),
+             py::arg("Name") = "Q01",
+             py::arg("L") = 0.25,
+             py::arg("K1") = 1,
+             py::arg("NKick") = 4,
+             py::arg("Dx") = 0,
+             py::arg("Dy") = 0,
+             py::arg("Tilt") = 0)
+        .def("run_qsympass4", &Quad::run_qsympass4,
+             py::arg("NParticles") = 10000,
+             py::arg("NTurns") = 100)
         .def("Update", &Quad::Update)
         .def("SetSympass", &Quad::SetSympass)
         .def("PrintTM", &Quad::PrintTM)
         .def("TransMatrix", &Quad::TransMatrix)
         .def("DoDxDyTilt", &Quad::DoDxDyTilt)
-        .def("Name", &Quad::Name);
+        .def("Name", &Quad::Name)
+        .def("__repr__", [](const Quad &a)
+             { return "<Quad named '" + a.Name() + "'>"; });
 }
